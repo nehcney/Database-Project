@@ -1,3 +1,4 @@
+// (c) Carey Nachenberg
 #ifndef HTTP_INCLUDED
 #define HTTP_INCLUDED
 
