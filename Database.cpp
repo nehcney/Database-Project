@@ -293,8 +293,7 @@ void Database::split(vector<int>& a, int start, int end, int pivot, int& firstEq
 	// condition:
 	//  firstEqualPivot <= firstUnknown and firstUnknown <= firstAfterPivot
 	//  Every element earlier than position firstEqualPivot is > pivot
-	//  Every element from position firstEqualPivot to firstUnknown-1 is
-	//    == pivot
+	//  Every element from position firstEqualPivot to firstUnknown-1 is == pivot
 	//  Every element from firstUnknown to firstAfterPivot-1 is not known yet
 	//  Every element at position firstAfterPivot or later is < pivot
 
