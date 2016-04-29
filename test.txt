@@ -1,0 +1,14 @@
+lastname*,firstname*,ID,GPA
+Smith,James,1003,3.50
+Nachenberg,Carey,4002,3.99
+Smallberg,David,0000,3.99
+Wang,Billy,3987,2.73
+Feng,Cameron,4245,3.24
+Wang,Lily,2409,3.87
+Nachenberg,Simon,0014,2.15
+Wang,Jeff,3923,3.76
+Smith,Alice,2003,3.50
+Wang,Eric,9092,3.17
+Smith,James,7774,3.52
+Adams,John,1111,4.0
+Wang,Zoolander,0101,0.0

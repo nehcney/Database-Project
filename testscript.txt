@@ -1,0 +1,7 @@
+file:test.txt
+qparam:lastname,F,
+qparam:firstname,,T
+sparam:lastname,ascending
+sparam:firstname,ascending
+sparam:GPA,descending
+execute
