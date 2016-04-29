@@ -53,16 +53,16 @@ public:
 		MultiMap::VNode* v_ptr;
 	};
 
-	MultiMap();												// O(1)
-	~MultiMap();											// O(NV) (v = # values per node)
-	void clear();											// O(NV)
-	void insert(std::string key, unsigned int value);		// O(log N)
-	Iterator findEqual(std::string key) const;				// O(log N)
+	MultiMap();						// O(1)
+	~MultiMap();						// O(NV) (v = # values per node)
+	void clear();						// O(NV)
+	void insert(std::string key, unsigned int value);	// O(log N)
+	Iterator findEqual(std::string key) const;		// O(log N)
 	Iterator findEqualOrSuccessor(std::string key) const;	// O(log N)
 	Iterator findEqualOrPredecessor(std::string key) const;	// O(log N)
 
 private:
-	MultiMap(const MultiMap& other);			// prevent copying
+	MultiMap(const MultiMap& other);		// prevent copying
 	MultiMap& operator=(const MultiMap& rhs);	// prevent copying
 	void removeAll(BSTNode* root);
 	int compare(std::string a, std::string b) const;
