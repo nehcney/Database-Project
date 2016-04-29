@@ -1,3 +1,4 @@
+// (c) Carey Nachenberg
 #ifndef TEST_INCLUDED
 #define TEST_INCLUDED
 
