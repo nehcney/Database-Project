@@ -33,13 +33,13 @@ public:
 
 	static const int ERROR_RESULT = -1;
 
-	Database();														// O(1)
-	~Database();													// O(F)
+	Database();							// O(1)
+	~Database();							// O(F)
 	bool specifySchema(const std::vector<FieldDescriptor>& schema);	// O(F)
-	bool addRow(const std::vector<std::string>& rowOfData);			// O(F log N)
-	bool loadFromURL(std::string url);								// O(FN log N)
-	bool loadFromFile(std::string filename);						// O(FN log N)
-	int getNumRows() const;											// O(1)
+	bool addRow(const std::vector<std::string>& rowOfData);		// O(F log N)
+	bool loadFromURL(std::string url);				// O(FN log N)
+	bool loadFromFile(std::string filename);			// O(FN log N)
+	int getNumRows() const;						// O(1)
 	bool getRow(int rowNum, std::vector<std::string>& row) const;	// O(F)
 	int search(const std::vector<SearchCriterion>& searchCriteria,	// O(CM log N + SR log R
 		const std::vector<SortCriterion>& sortCriteria, 
