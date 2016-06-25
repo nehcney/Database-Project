@@ -1,3 +1,7 @@
+// To create an effective multimap, each node in the binary search tree
+// (BSTNode) points to a doubly-linked list of value nodes (VNode), so
+// that each BSTNode can contain multiple values.
+
 #ifndef MULTIMAP_H
 #define MULTIMAP_H
 
