@@ -5,3 +5,5 @@ This project was specced by Carey Nachenberg to be the final project for UCLA's 
     - Database
 
 A simple description of each class, what it is and how it works, is commented on their respective header files.
+
+Copyright (c) 2016 Yen Chen
