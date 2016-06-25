@@ -1,4 +1,7 @@
-// (c) Carey Nachenberg
+// This Test class loads and runs a test script, which tests the
+// functionality of the Database and MultiMap classes.
+// Written by Carey Nachenberg.
+
 #ifndef TEST_INCLUDED
 #define TEST_INCLUDED
 
