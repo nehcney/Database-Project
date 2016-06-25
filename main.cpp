@@ -1,4 +1,3 @@
-// (c) Carey Nachenberg
 #include "test.h"
 #include <iostream>
 #include <string>
