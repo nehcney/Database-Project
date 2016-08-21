@@ -81,7 +81,7 @@ void MultiMap::clear()
 
 // If no matching key is found, inserts a new BSTNode. Otherwise, since each BSTNode 
 // contains a linked list of values as part of the multimap implementation, a new
-// VNode is added to the matching BSTNode's value list. 
+// VNode is added to the end of the matching BSTNode's value list. 
 // --- The way we implemented iterator traversal requires that each BSTNode contains a
 // pointer to the prev and next BSTNode. In order to keep track of which is prev/next,
 // we create two temp BSTNode pointers: min and max. Each time we traverse left down the
@@ -166,7 +166,8 @@ MultiMap::Iterator MultiMap::findEqual(string key) const
 // BSTNode's v_head (earliest value). If key is an empty string, returns iterator to the
 // smallest BSTNode. If key is larger than the largest BSTNode, returns invalid iterator.
 // --- Utlizes a BSTNode pointer "max" to keep track of the next largest key. Everytime
-// we traverse left, the node we last visited will be the new "max".
+// we traverse left, the node we last visited will be the new "max". Alternatively, we could
+// just use the node's built-in "next" pointer.
 MultiMap::Iterator MultiMap::findEqualOrSuccessor(string key) const
 {
 	BSTNode *cur = head, *max = nullptr;
@@ -183,7 +184,7 @@ MultiMap::Iterator MultiMap::findEqualOrSuccessor(string key) const
 		else if (result > 0) // (key > cur->key)
 		{
 			if (cur->right == nullptr)
-				return Iterator(max);
+				return Iterator(max); // or Iterator(cur->next)
 			cur = cur->right;
 		}
 		else // found matching key
@@ -197,7 +198,8 @@ MultiMap::Iterator MultiMap::findEqualOrSuccessor(string key) const
 // BSTNode's v_tail (latest value). If key is an empty string, returns iterator to the
 // largest BSTNode. If key is smaller than the smallest BSTNode, returns invalid iterator.
 // --- Utlizes a BSTNode pointer "min" to keep track of the next smallest key. Everytime
-// we traverse right, the node we last visited will be the new "min".
+// we traverse right, the node we last visited will be the new "min". Alternatively, we could
+// just use the node's built-in "prev" pointer.
 MultiMap::Iterator MultiMap::findEqualOrPredecessor(string key) const
 {
 	BSTNode *cur = head, *min = nullptr;
@@ -207,7 +209,7 @@ MultiMap::Iterator MultiMap::findEqualOrPredecessor(string key) const
 		if (key != "" && result < 0) // (key < cur->key)
 		{
 			if (cur->left == nullptr)
-				return Iterator(min, true);
+				return Iterator(min, true); // or Iterator(cur->prev, true)
 			cur = cur->left;
 		}
 		else if (key == "" || result > 0) // (key > cur->key)
@@ -248,7 +250,7 @@ void MultiMap::removeAll(BSTNode* root)
 }
 
 // Returns 0 if both strings are equal, -1 if a < b, 1 if a > b.
-// --- If one is a number, the other is also (by design). In order to compare two numbers
+// --- If one is a number, the other is also (by designed use). In order to compare two numbers
 // as strings, eg. 020 vs 20, we need to fill the shorter string with padded 0's.
 int MultiMap::compare(string a, string b) const
 {
