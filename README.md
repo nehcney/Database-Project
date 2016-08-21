@@ -7,9 +7,9 @@ I completed this project as a means to practice creating complex data structures
   
     ![image](https://cloud.githubusercontent.com/assets/15008279/17835963/27985d84-6737-11e6-99e5-1e511d25955b.png)
 - **Database :**  A simple database that contains three primary data structures:
-  - A schema description
-  - A bunch of rows of data (aka data records)
-  - One or more field indexes
+  1. A schema description
+  2. A bunch of rows of data (aka data records)
+  3. One or more field indexes
     ![image](https://cloud.githubusercontent.com/assets/15008279/17835974/99dca1c0-6737-11e6-85b5-aeda9988b854.png)
 
 A simple description of each class, what it is and how it works, is commented on their respective header files.
