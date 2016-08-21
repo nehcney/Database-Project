@@ -21,6 +21,8 @@ Database::~Database()
 	clearFieldIndex();
 }
 
+// Runs through the new schema, creates an index for each indexable field, and assigns
+// the schema. Returns false if there are no indexable fields, otherwise true.
 bool Database::specifySchema(const vector<FieldDescriptor>& schema)
 {
 	clearAll();
@@ -41,6 +43,10 @@ bool Database::specifySchema(const vector<FieldDescriptor>& schema)
 	return true;
 }
 
+// Adds a new row of data to our data records (m_rows). For each indexable field, we insert a 
+// mapping of that field to its corresponding row # to the appropriate index (m_fieldIndex[i]).
+// Returns false if the schema is empty, or the row of data does not match the same # of fields.
+// Otherwise returns true.
 bool Database::addRow(const vector<string>& rowOfData)
 {
 	if (m_schema.empty() || m_schema.size() != rowOfData.size())
@@ -54,6 +60,11 @@ bool Database::addRow(const vector<string>& rowOfData)
 	return true;
 }
 
+// Copies the contents of the URL to a string (using the HTTP class). The 1st line should contain
+// the schema, and subsequent lines should contain the rows of data. Assigns the new schema, adds
+// all the new rows of data, and adds new index entries where appropriate.
+// Returns false if URL fails to load, if schema has no indexable fields, or if the # of fields on
+// a row does not match the # of fields in the schema. Otherwise, returns true.
 bool Database::loadFromURL(string url)
 {
 	string page;
@@ -98,6 +109,11 @@ bool Database::loadFromURL(string url)
 	return true;
 }
 
+// Copies the contents of the file to a string. The 1st line should contain the schema, and 
+// subsequent lines should contain the rows of data. Assigns the new schema, adds all the new 
+// rows of data, and adds new index entries where appropriate.
+// Returns false if URL fails to load, if schema has no indexable fields, or if the # of fields on
+// a row does not match the # of fields in the schema. Otherwise, returns true.
 bool Database::loadFromFile(string filename)
 {
 	ifstream inf(filename);
@@ -165,8 +181,8 @@ int Database::search(const vector<SearchCriterion>& searchCriteria,
 	// Search
 	//	The result of our query is the intersection of all search criteria. To do this, 
 	//	for each search criteria, we plug our results into the unordered_set cur_query.
-	//	For each subsequent search criteria, we copy cur_query into prev_query and clear
-	//	cur_query, then check if the new value exists within prev_query: if it does, we 
+	//	For each subsequent search criteria, we replace prev_query with cur_query, clear
+	//	cur_query, then check if each new value exists within prev_query: if it does, we 
 	//	have an intersection, and we enter the value into cur_query.
 	unordered_set<int> cur_query, prev_query;
 	for (int i = 0; i < searchCriteria.size(); ++i)
@@ -250,6 +266,9 @@ void Database::clearFieldIndex()
 	m_fieldIndex = nullptr;
 }
 
+// Compares two rows of data by the specified field name, and by the ordering (ascending/descending),
+// defined in sortCriteria. Returns 1 if the 1st row belongs after the 2nd, or -1 if vice versa.
+// If the two rows being compared are equal, we check the next sortCritera.
 int Database::compare(int a, int b, const vector<SortCriterion>& sortCriteria)
 {
 	for (int i = 0; i < sortCriteria.size(); ++i)
@@ -272,7 +291,7 @@ int Database::compare(int a, int b, const vector<SortCriterion>& sortCriteria)
 					if (m_rows[a][j] > m_rows[b][j])
 						return -1;
 				}
-				break;
+				break; // elements are equal, check the next sortCriteria
 			}
 		}
 	}
