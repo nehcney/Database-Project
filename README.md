@@ -3,7 +3,7 @@ An in-memory database that supports queries across multiple keys and arbitrary o
 
 ## Summary
 I completed this project as a means to practice creating complex data structures (for this project I implemented a multimap BST class) as well as efficient searching and sorting algorithms. In order to properly implement the database system, I built a simple set of C++ classes:
-- **MultiMap :**  A binary search tree that accepts multiple values for each key.
+- **MultiMap :**  A binary search tree that accepts multiple values for each key. We use a BST instead of a hash table because our queries always return a range of results (eg. all entries with names between Bob and Marsha).
   
     ![image](https://cloud.githubusercontent.com/assets/15008279/17835963/27985d84-6737-11e6-99e5-1e511d25955b.png)
 - **Database :**  A simple database that contains three primary data structures:
