@@ -1,8 +1,7 @@
-// Each database is organized by specifying a schema. The schema
-// tells the database what fields are present in each record, and
-// which of those fields should be indexed. When importing data,
-// each field marked for indexing will be added to its respective
-// BST multimap so that it can be efficiently queried.
+// Each database is organized by specifying a schema. The schema tells the database what fields 
+// are present in each record, and which of those fields should be indexed. When importing data,
+// each field marked for indexing will be added to its respective BST multimap so that it can be 
+// efficiently queried.
 
 #ifndef DATABASE_H
 #define DATABASE_H
