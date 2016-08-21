@@ -12,31 +12,33 @@ class MultiMap
 private:
 	struct VNode
 	{
+		unsigned int value;
+		VNode* prev;
+		VNode* next;
+		
 		VNode(unsigned int v)
 		{
 			value = v;
 			prev = next = nullptr;
 		}
-		unsigned int value;
-		VNode* prev;
-		VNode* next;
 	};
 
 	struct BSTNode
 	{
+		std::string key;// Key
+		VNode* v_head;	// Value
+		VNode* v_tail;
+		BSTNode* left;	// Children
+		BSTNode* right;
+		BSTNode* prev;	// Pointers to in-order prev/next
+		BSTNode* next;
+		
 		BSTNode(std::string s, unsigned int v)
 		{
 			key = s;
 			v_head = v_tail = new VNode(v);
 			left = right = prev = next = nullptr;
 		}
-		std::string key;
-		VNode* v_head;
-		VNode* v_tail;
-		BSTNode* left;
-		BSTNode* right;
-		BSTNode* prev;
-		BSTNode* next;
 	};
 
 	BSTNode* head;
@@ -45,12 +47,12 @@ public:
 	class Iterator
 	{
 	public:
-		Iterator(BSTNode* root = nullptr, bool tail = false);
-		bool valid() const;
-		std::string getKey() const;
-		unsigned int getValue() const;
-		bool next();
-		bool prev();
+		Iterator(BSTNode* root = nullptr, bool tail = false); // O(1)
+		bool valid() const;				// O(1)
+		std::string getKey() const;			// O(1)
+		unsigned int getValue() const;			// O(1)
+		bool next();					// O(1)
+		bool prev();					// O(1)
 
 	private:
 		MultiMap::BSTNode* bst_ptr;
@@ -66,10 +68,10 @@ public:
 	Iterator findEqualOrPredecessor(std::string key) const;	// O(log N)
 
 private:
-	MultiMap(const MultiMap& other);		// prevent copying
-	MultiMap& operator=(const MultiMap& rhs);	// prevent copying
-	void removeAll(BSTNode* root);
-	int compare(std::string a, std::string b) const;
+	MultiMap(const MultiMap& other);			// prevent copying
+	MultiMap& operator=(const MultiMap& rhs);		// prevent copying
+	void removeAll(BSTNode* root);				// O(NV)
+	int compare(std::string a, std::string b) const;	
 };
 
 #endif // MULTIMAP_H
