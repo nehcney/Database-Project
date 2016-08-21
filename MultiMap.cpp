@@ -32,7 +32,7 @@ bool MultiMap::Iterator::next()
 	if (!valid())
 		return false;
 
-	if (v_ptr == bst_ptr->v_tail)
+	if (v_ptr == bst_ptr->v_tail) // end of the value linked list
 	{
 		bst_ptr = bst_ptr->next;
 		v_ptr = bst_ptr ? bst_ptr->v_head : nullptr;
@@ -48,7 +48,7 @@ bool MultiMap::Iterator::prev()
 	if (!valid())
 		return false;
 
-	if (v_ptr == bst_ptr->v_head)
+	if (v_ptr == bst_ptr->v_head) // first node of value linked list
 	{
 		bst_ptr = bst_ptr->prev;
 		v_ptr = bst_ptr ? bst_ptr->v_tail : nullptr;
@@ -247,6 +247,9 @@ void MultiMap::removeAll(BSTNode* root)
 	delete root;
 }
 
+// Returns 0 if both strings are equal, -1 if a < b, 1 if a > b.
+// --- If one is a number, the other is also (by design). In order to compare two numbers
+// as strings, eg. 020 vs 20, we need to fill the shorter string with padded 0's.
 int MultiMap::compare(string a, string b) const
 {
 	bool isNumber = a.find_first_not_of("0123456789.") == string::npos;
