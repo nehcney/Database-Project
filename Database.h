@@ -1,7 +1,10 @@
 // Each database is organized by specifying a schema. The schema tells the database what fields 
 // are present in each record, and which of those fields should be indexed. When importing data,
 // each field marked for indexing will be added to its respective BST multimap so that it can be 
-// efficiently queried.
+// efficiently queried. When querying, finds all results that match every keyword defined by the 
+// search criteria, and within the specified range specified, and returns them in the order
+// specified by the sorting criteria. Since we are always interested in a range of results, it 
+// makes sense to index using a BST rather than a hash table.
 
 #ifndef DATABASE_H
 #define DATABASE_H
